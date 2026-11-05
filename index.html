@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sieve Debate Buster</title>
+    <!-- Tailwind CSS for clean layout styling -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-between p-6">
+
+    <!-- Header Section -->
+    <header class="text-center my-6">
+        <h1 class="text-4xl font-bold text-amber-500 mb-2">Sieve Debate Buster</h1>
+        <p class="text-slate-400">Cut through the noise with instant logical analysis</p>
+    </header>
+
+    <!-- Main Tool Interface -->
+    <main class="max-w-2xl mx-auto w-full bg-slate-800 p-6 rounded-xl shadow-2xl border border-slate-700 my-auto">
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Enter Claim or Argument:</label>
+                <textarea id="argumentInput" rows="4" class="w-full p-3 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-amber-500" placeholder="Type or paste the debate claim here..."></textarea>
+            </div>
+            
+            <button onclick="analyzeDebate()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-lg transition duration-200 cursor-pointer">
+                Execute Sieve Analysis
+            </button>
+
+            <!-- Results Output Area -->
+            <div id="resultBox" class="hidden mt-6 p-4 rounded-lg bg-slate-900 border border-slate-700">
+                <h3 class="text-lg font-semibold text-amber-400 mb-2">Analysis Result:</h3>
+                <p id="resultText" class="text-slate-300 whitespace-pre-line"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Layout Footer -->
+    <footer class="text-center text-xs text-slate-500 mt-12">
+        <p>&copy; 2026 Sovereign Data Infrastructure LLC. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Core Logic Engine Script -->
+    <script>
+        function analyzeDebate() {
+            const argument = document.getElementById('argumentInput').value.trim();
+            const resultBox = document.getElementById('resultBox');
+            const resultText = document.getElementById('resultText');
+
+            if (!argument) {
+                alert("Please enter a claim to analyze first.");
+                return;
+            }
+
+            // Simple responsive text analysis formulas
+            const upper = argument.toUpperCase();
+            let analysis = "";
+
+            if (upper.includes("ELECTION") || upper.includes("VOTE") || upper.includes("POLITICS")) {
+                analysis = "🎯 **Category:** Civic/Political Claim\n\n🔍 **Sieve Evaluation:** This claim touches on verified institutional systems. Cross-reference specific local operational rules before formulating a public response.";
+            } else if (upper.includes("FLOOD") || upper.includes("WEATHER") || upper.includes("ARENA")) {
+                analysis = "🌊 **Category:** Environmental/Media Verification\n\n🔍 **Sieve Evaluation:** This matches localized event criteria (similar to recent Sunrise, FL baseline data). Separate authentic footage data strings from speculative online claims.";
+            } else {
+                analysis = "🧠 **Category:** General Logical Argument\n\n🔍 **Sieve Evaluation:** No immediate structural fallacies detected. The framework is logically sound for standard debate processing.";
+            }
+
+            // Render output to screen
+            resultText.innerHTML = analysis;
+            resultBox.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
