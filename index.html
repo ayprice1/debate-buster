@@ -18,20 +18,20 @@
         <p class="text-slate-400">Cut through the noise with instant logical analysis</p>
     </header>
 
-    <!-- Main Tool Interface -->
-    <main class="max-w-2xl mx-auto w-full bg-slate-800 p-6 rounded-xl shadow-2xl border border-slate-700 my-auto">
-        <div class="space-y-4">
-            <div>
+  <!-- Main Tool Interface -->
+    <main class="max-w-2xl mx-auto w-full bg-slate-800 p-6 rounded-xl shadow-2xl border border-slate-700 my-auto z-10">
+        <div class="flex flex-col space-y-4">
+            <div class="flex flex-col">
                 <label class="block text-sm font-medium text-slate-300 mb-2">Enter Claim or Argument:</label>
-                <textarea id="argumentInput" rows="4" class="w-full p-3 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-amber-500" placeholder="Type or paste the debate claim here..."></textarea>
+                <textarea id="argumentInput" rows="4" class="w-full p-4 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-amber-500 block" placeholder="Type or paste the debate claim here..."></textarea>
             </div>
             
-            <button onclick="analyzeDebate()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-lg transition duration-200 cursor-pointer">
+            <button onclick="analyzeDebate()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-4 px-4 rounded-lg transition duration-200 cursor-pointer block text-center">
                 Execute Sieve Analysis
             </button>
 
             <!-- Results Output Area -->
-            <div id="resultBox" class="hidden mt-6 p-4 rounded-lg bg-slate-900 border border-slate-700">
+            <div id="resultBox" class="hidden mt-6 p-4 rounded-lg bg-slate-900 border border-slate-700 block">
                 <h3 class="text-lg font-semibold text-amber-400 mb-2">Analysis Result:</h3>
                 <p id="resultText" class="text-slate-300 whitespace-pre-line"></p>
             </div>
