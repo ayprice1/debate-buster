@@ -4,72 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sieve Debate Buster</title>
-    <!-- Tailwind CSS for clean layout styling -->
-    <script src="https://jsdelivr.net"></script>
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-col: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #f59e0b;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        label {
+            display: block;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+        button {
+            width: 100%;
+            background-color: #f59e0b;
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #d97706;
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+        }
+        .result-title {
+            color: #f59e0b;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .result-text {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            white-space: pre-line;
+            margin: 0;
+        }
+        footer {
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 0.75rem;
+            text-align: center;
+            width: 100%;
+        }
     </style>
 </head>
-<body class="flex flex-col min-h-screen justify-between p-6">
+<body>
 
-    <!-- Header Section -->
-    <header class="text-center my-6">
-        <h1 class="text-4xl font-bold text-amber-500 mb-2">Sieve Debate Buster</h1>
-        <p class="text-slate-400">Cut through the noise with instant logical analysis</p>
-    </header>
+    <div class="container">
+        <h1>Sieve Debate Buster</h1>
+        <div class="subtitle">Cut through the noise with instant logical analysis</div>
 
-  <!-- Main Tool Interface -->
-    <main class="max-w-2xl mx-auto w-full bg-slate-800 p-6 rounded-xl shadow-2xl border border-slate-700 my-auto z-10">
-        <div class="flex flex-col space-y-4">
-            <div class="flex flex-col">
-                <label class="block text-sm font-medium text-slate-300 mb-2">Enter Claim or Argument:</label>
-                <textarea id="argumentInput" rows="4" class="w-full p-4 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-amber-500 block" placeholder="Type or paste the debate claim here..."></textarea>
-            </div>
+        <div class="card">
+            <label for="argumentInput">Enter Claim or Argument:</label>
+            <textarea id="argumentInput" placeholder="Type or paste the debate claim here..."></textarea>
             
-            <button onclick="analyzeDebate()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-4 px-4 rounded-lg transition duration-200 cursor-pointer block text-center">
-                Execute Sieve Analysis
-            </button>
+            <button onclick="analyzeDebate()">Execute Sieve Analysis</button>
 
-            <!-- Results Output Area -->
-            <div id="resultBox" class="hidden mt-6 p-4 rounded-lg bg-slate-900 border border-slate-700 block">
-                <h3 class="text-lg font-semibold text-amber-400 mb-2">Analysis Result:</h3>
-                <p id="resultText" class="text-slate-300 whitespace-pre-line"></p>
+            <div id="resultBox" class="result-box">
+                <div class="result-title">Analysis Result:</div>
+                <p id="resultText" class="result-text"></p>
             </div>
         </div>
-    </main>
 
-    <!-- Layout Footer -->
-    <footer class="text-center text-xs text-slate-500 mt-12">
-        <p>&copy; 2026 Sovereign Data Infrastructure LLC. All Rights Reserved.</p>
-    </footer>
+        <footer>
+            &copy; 2026 Sovereign Data Infrastructure LLC. All Rights Reserved.
+        </footer>
+    </div>
 
-    <!-- Core Logic Engine Script -->
     <script>
         function analyzeDebate() {
-            const argument = document.getElementById('argumentInput').value.trim();
-            const resultBox = document.getElementById('resultBox');
-            const resultText = document.getElementById('resultText');
+            var argument = document.getElementById('argumentInput').value.trim();
+            var resultBox = document.getElementById('resultBox');
+            var resultText = document.getElementById('resultText');
 
             if (!argument) {
                 alert("Please enter a claim to analyze first.");
                 return;
             }
 
-            // Simple responsive text analysis formulas
-            const upper = argument.toUpperCase();
-            let analysis = "";
+            var upper = argument.toUpperCase();
+            var analysis = "";
 
             if (upper.includes("ELECTION") || upper.includes("VOTE") || upper.includes("POLITICS")) {
-                analysis = "🎯 **Category:** Civic/Political Claim\n\n🔍 **Sieve Evaluation:** This claim touches on verified institutional systems. Cross-reference specific local operational rules before formulating a public response.";
+                analysis = "🎯 Category: Civic/Political Claim\n\n🔍 Sieve Evaluation: This claim touches on verified institutional systems. Cross-reference specific local operational rules before formulating a public response.";
             } else if (upper.includes("FLOOD") || upper.includes("WEATHER") || upper.includes("ARENA")) {
-                analysis = "🌊 **Category:** Environmental/Media Verification\n\n🔍 **Sieve Evaluation:** This matches localized event criteria (similar to recent Sunrise, FL baseline data). Separate authentic footage data strings from speculative online claims.";
+                analysis = "🌊 Category: Environmental/Media Verification\n\n🔍 Sieve Evaluation: This matches localized event criteria (similar to recent Sunrise, FL baseline data). Separate authentic footage data strings from speculative online claims.";
             } else {
-                analysis = "🧠 **Category:** General Logical Argument\n\n🔍 **Sieve Evaluation:** No immediate structural fallacies detected. The framework is logically sound for standard debate processing.";
+                analysis = "🧠 Category: General Logical Argument\n\n🔍 Sieve Evaluation: No immediate structural fallacies detected. The framework is logically sound for standard debate processing.";
             }
 
-            // Render output to screen
-            resultText.innerHTML = analysis;
-            resultBox.classList.remove('hidden');
+            resultText.textContent = analysis;
+            resultBox.style.display = 'block';
         }
     </script>
 </body>
